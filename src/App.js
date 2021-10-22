@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 function App() {
   const [weather, setWeather] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("London");
   const [isValid, setIsValid] = useState(true);
   const inputRef = useRef();
 
@@ -45,7 +45,7 @@ function App() {
           onChange={updateSearch}
           className={` ${"search-bar"} ${!isValid && "invalid"}`}
           type="text"
-          placeholder="try New York, London, Venice..."
+          placeholder="Enter a City"
           value={search}
         ></input>
         <button type="submit">Submit</button>
