@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 function App() {
   const [weather, setWeather] = useState([]);
+  const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  const inputRef = useRef();
 
   useEffect(() => {
     const getWeather = async () => {
@@ -16,8 +19,37 @@ function App() {
     getWeather();
   }, [query]);
 
+  const updateSearch = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
+    setSearch(e.target.value);
+  };
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    const enteredFood = inputRef.current.value;
+    if (enteredFood.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+    setQuery(search);
+    setSearch("");
+  };
+
   return (
     <div className="App">
+      <form onSubmit={getSearch}>
+        <input
+          ref={inputRef}
+          onChange={updateSearch}
+          className={` ${"search-bar"} ${!isValid && "invalid"}`}
+          type="text"
+          placeholder="try New York, London, Venice..."
+          value={search}
+        ></input>
+        <button type="submit">Submit</button>
+      </form>
       <div className="recipes">{weather.dt}</div>
     </div>
   );
