@@ -51,7 +51,7 @@ function App() {
         ></Input>
         <button type="submit">Submit</button>
       </form>
-      <div className="recipes">{weather.dt}</div>
+      <div className="recipes">{weather.name}</div>
     </div>
   );
 }
