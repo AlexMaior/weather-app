@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Input from "./components/Input";
 
 function App() {
   const [weather, setWeather] = useState([]);
@@ -40,14 +41,14 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={getSearch}>
-        <input
+        <Input
           ref={inputRef}
           onChange={updateSearch}
           className={` ${"search-bar"} ${!isValid && "invalid"}`}
           type="text"
           placeholder="Enter a City"
           value={search}
-        ></input>
+        ></Input>
         <button type="submit">Submit</button>
       </form>
       <div className="recipes">{weather.dt}</div>
