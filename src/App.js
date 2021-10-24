@@ -51,7 +51,12 @@ function App() {
         ></Input>
         <button type="submit">Submit</button>
       </form>
-      <div className="recipes">{weather.name}</div>
+      <div>{weather.name}</div>
+      <div>
+        {weather.weather.map((wea) => (
+          <div>{wea.description}</div>
+        ))}
+      </div>
     </div>
   );
 }
